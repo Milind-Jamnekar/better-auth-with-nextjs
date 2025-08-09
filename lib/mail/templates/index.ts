@@ -1,1 +1,1 @@
-export { SigninTemplate, SendSignInMail } from "./signin";
+export { SendSignInMail } from "./signin";
