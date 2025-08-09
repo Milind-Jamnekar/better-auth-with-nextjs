@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -23,9 +22,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
 
 const formSchema = z.object({
@@ -112,7 +109,11 @@ export function LoginForm({
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn@example.com" {...field} />
+                      <Input
+                        disabled={form.formState.isSubmitting}
+                        placeholder="shadcn@example.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -131,6 +132,7 @@ export function LoginForm({
                       <Input
                         type="password"
                         placeholder="password"
+                        disabled={form.formState.isSubmitting}
                         {...field}
                       />
                     </FormControl>
@@ -140,10 +142,18 @@ export function LoginForm({
               />
             </CardContent>
             <CardFooter className="flex-1 flex-col gap-3">
-              <Button type="submit" className="w-full">
+              <Button
+                disabled={form.formState.isSubmitting}
+                type="submit"
+                className="w-full"
+              >
                 Login
               </Button>
-              <Button variant="outline" className="w-full">
+              <Button
+                disabled={form.formState.isSubmitting}
+                variant="outline"
+                className="w-full"
+              >
                 Login with Google
               </Button>
             </CardFooter>

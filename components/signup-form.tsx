@@ -65,7 +65,6 @@ export function SignUpForm({
         name,
         email, // user email address
         password, // user password -> min 8 characters by default
-        callbackURL: "/dashboard", // A URL to redirect to after the user verifies their email (optional)
       },
       {
         onRequest: (ctx) => {
@@ -79,7 +78,6 @@ export function SignUpForm({
           toast.success("Signed up successfully", {
             id: "signup",
           });
-          redirect("/dashboard");
         },
         onError: (ctx) => {
           // display the error message
